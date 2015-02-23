@@ -10,6 +10,10 @@
 		5429897B1A95BECF00FA282A /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5429897A1A95BECF00FA282A /* TwitterClient.swift */; };
 		542989821A95C3F000FA282A /* logo_blue_100x81.png in Resources */ = {isa = PBXBuildFile; fileRef = 542989801A95C3F000FA282A /* logo_blue_100x81.png */; };
 		542989831A95C3F000FA282A /* logo_white_100x81.png in Resources */ = {isa = PBXBuildFile; fileRef = 542989811A95C3F000FA282A /* logo_white_100x81.png */; };
+		54D64FB01A9A97B800B92850 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D64FAF1A9A97B800B92850 /* User.swift */; };
+		54D64FB21A9A97C800B92850 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D64FB11A9A97C800B92850 /* Tweet.swift */; };
+		54D64FB41A9AAFF200B92850 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D64FB31A9AAFF200B92850 /* TimelineViewController.swift */; };
+		54D64FB61A9AF34300B92850 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D64FB51A9AF34300B92850 /* TweetCell.swift */; };
 		54F551081A95B74C00866ED3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F551071A95B74C00866ED3 /* AppDelegate.swift */; };
 		54F5510A1A95B74C00866ED3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F551091A95B74C00866ED3 /* ViewController.swift */; };
 		54F5510D1A95B74C00866ED3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F5510B1A95B74C00866ED3 /* Main.storyboard */; };
@@ -35,6 +39,10 @@
 		5429897A1A95BECF00FA282A /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		542989801A95C3F000FA282A /* logo_blue_100x81.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_blue_100x81.png; sourceTree = "<group>"; };
 		542989811A95C3F000FA282A /* logo_white_100x81.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_white_100x81.png; sourceTree = "<group>"; };
+		54D64FAF1A9A97B800B92850 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		54D64FB11A9A97C800B92850 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		54D64FB31A9AAFF200B92850 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		54D64FB51A9AF34300B92850 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		54F551021A95B74C00866ED3 /* Twittah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twittah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F551061A95B74C00866ED3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54F551071A95B74C00866ED3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				54F551091A95B74C00866ED3 /* ViewController.swift */,
+				54D64FB31A9AAFF200B92850 /* TimelineViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -79,6 +88,8 @@
 		542989721A95BD2200FA282A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				54D64FAF1A9A97B800B92850 /* User.swift */,
+				54D64FB11A9A97C800B92850 /* Tweet.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -86,6 +97,7 @@
 		542989731A95BD2B00FA282A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				54D64FB51A9AF34300B92850 /* TweetCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -316,9 +328,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54D64FB01A9A97B800B92850 /* User.swift in Sources */,
+				54D64FB61A9AF34300B92850 /* TweetCell.swift in Sources */,
+				54D64FB21A9A97C800B92850 /* Tweet.swift in Sources */,
 				54F5510A1A95B74C00866ED3 /* ViewController.swift in Sources */,
 				5429897B1A95BECF00FA282A /* TwitterClient.swift in Sources */,
 				54F551081A95B74C00866ED3 /* AppDelegate.swift in Sources */,
+				54D64FB41A9AAFF200B92850 /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
