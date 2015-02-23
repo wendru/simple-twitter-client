@@ -11,8 +11,10 @@ import UIKit
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tweets = [Tweet]()
+    var refreshControl: UIRefreshControl!
     
     @IBOutlet weak var timelineTable: UITableView!
+    var HUD = JGProgressHUD(style: JGProgressHUDStyle.Dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func setUp() {
         timelineTable.delegate = self
         timelineTable.dataSource = self
+        
         setNeedsStatusBarAppearanceUpdate()
+        createRefreshControl()
         
         timelineTable.rowHeight = UITableViewAutomaticDimension
         timelineTable.estimatedRowHeight = 50
@@ -34,6 +38,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadTimeline() {
+        HUD.showInView(self.view)
+        
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             if tweets != nil {
                 self.tweets = tweets!
@@ -48,6 +54,20 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             
         })
+        
+        HUD.dismissAfterDelay(0.5, animated: true)
+        refreshControl.endRefreshing()
+    }
+    
+    func createRefreshControl() {
+        refreshControl = UIRefreshControl()
+        
+        refreshControl.addTarget(
+            self,
+            action: "loadTimeline",
+            forControlEvents: UIControlEvents.ValueChanged)
+        
+        timelineTable.insertSubview(refreshControl, atIndex: 0)
     }
     
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {

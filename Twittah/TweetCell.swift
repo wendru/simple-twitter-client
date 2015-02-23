@@ -27,9 +27,10 @@ class TweetCell: UITableViewCell {
         handleLabel.text = NSString(format: "@%@", sn!)
         handleLabel.sizeToFit()
         
-        contentLabel.text = tweet.text!
         contentLabel.sizeToFit()
+        contentLabel.text = tweet.text!
     }
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

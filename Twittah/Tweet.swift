@@ -14,6 +14,7 @@ class Tweet: NSObject {
     var createdAtString: String?
     var createdAt: NSDate?
     var dictionary: NSDictionary?
+    var timestamp: String?
     
     init(dict: NSDictionary) {
         self.dictionary = dict
