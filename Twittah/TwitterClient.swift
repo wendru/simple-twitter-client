@@ -23,6 +23,18 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     }
     
     func createFavoriteWithParams(params: NSDictionary?, completion: (response: NSDictionary?, error: NSError?) -> ()) {
+        POST("1.1/statuses/retweet/:id.json",
+            parameters: params,
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                completion(response: response as? NSDictionary, error: nil)
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Failed to update:\n\(error)")
+                completion(response: nil, error: error)
+        })
+    }
+    
+    func retweetWithParams(params: NSDictionary?, completion: (response: NSDictionary?, error: NSError?) -> ()) {
         POST("1.1/favorites/create.json",
             parameters: params,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in

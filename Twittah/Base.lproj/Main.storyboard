@@ -252,10 +252,14 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LST-mI-XQS" customClass="RetweetImageView" customModule="Twittah" customModuleProvider="target">
                                         <rect key="frame" x="152" y="2" width="16" height="16"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="Vss-7F-krp"/>
                                             <constraint firstAttribute="width" constant="16" id="o3x-uN-8tx"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="h1V-P9-HDU" appends="YES" id="Ozu-Gt-wwY"/>
+                                        </connections>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUJ-pS-iKF" customClass="ReplyImageView" customModule="Twittah" customModuleProvider="target">
                                         <rect key="frame" x="239" y="2" width="16" height="16"/>
@@ -342,6 +346,11 @@
                 <tapGestureRecognizer id="PyH-YQ-SSZ">
                     <connections>
                         <action selector="favButtonTapped:" destination="TsJ-xH-o25" id="UeU-KT-i4K"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="h1V-P9-HDU">
+                    <connections>
+                        <action selector="retweetButtonTapped:" destination="TsJ-xH-o25" id="W0D-Lz-Xbo"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

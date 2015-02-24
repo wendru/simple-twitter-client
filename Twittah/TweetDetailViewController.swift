@@ -52,6 +52,11 @@ class TweetDetailViewController: UIViewController {
         contentLabel.text = tweet!.text!
         
         timestampLabel.text = tweet!.createdAtString
+        
+        let faved = tweet?.favorited!
+        let retweeted = tweet?.retweeted!
+        faveImage.setFaved(faved!)
+        retweetImage.setRetweeted(retweeted!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +66,24 @@ class TweetDetailViewController: UIViewController {
     
     @IBAction func onTimelineButtonTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func retweetButtonTapped(sender: AnyObject) {
+        var params = NSMutableDictionary()
+        params["id"] = tweet?.id
+        
+        TwitterClient.sharedInstance.retweetWithParams(params, completion: { (response, error) -> () in
+            if error == nil {
+                self.retweetImage.setRetweeted(true)
+            } else {
+                UIAlertView(
+                    title: nil,
+                    message: "Unable to retweet",
+                    delegate: self,
+                    cancelButtonTitle: "Well damn...")
+                    .show()
+            }
+        })
     }
     
     @IBAction func favButtonTapped(sender: AnyObject) {
