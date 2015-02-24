@@ -93,15 +93,18 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         return tweets.count
     }
     
+    func currentTweet() -> Tweet {
+        let row = timelineTable.indexPathForSelectedRow()?.row
+        return tweets[row!]
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         self.tweetDetailVC = segue.destinationViewController as TweetDetailViewController
-        
-        let row = timelineTable.indexPathForSelectedRow()?.row
-        tweetDetailVC.tweet = tweets[row!]
+        tweetDetailVC.tweet = currentTweet()
         super.prepareForSegue(segue, sender: sender)
     }
-
+    
 }

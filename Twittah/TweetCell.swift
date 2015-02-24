@@ -15,6 +15,11 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     
+    @IBOutlet weak var favImage: FaveImageView!
+    @IBOutlet weak var retweetImage: RetweetImageView!
+    @IBOutlet weak var replyImage: ReplyImageView!
+    
+    
     func hygrateWithTweet(tweet: Tweet) {
         profileImage.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
         profileImage.layer.cornerRadius = 4
@@ -26,6 +31,13 @@ class TweetCell: UITableViewCell {
         handleLabel.text = NSString(format: "@%@", sn!)
         
         contentLabel.text = tweet.text!
+        
+        let faved = tweet.favorited!
+        let retweeted = tweet.retweeted!
+        favImage.setFaved(faved)
+        retweetImage.setRetweeted(retweeted)
+        favImage.id = tweet.id
+        retweetImage.id = tweet.id
     }
     
 

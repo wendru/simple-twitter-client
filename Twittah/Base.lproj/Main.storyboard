@@ -126,9 +126,36 @@
                                                     <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zx1-fj-Y64" customClass="RetweetImageView" customModule="Twittah" customModuleProvider="target">
+                                                    <rect key="frame" x="136" y="62" width="16" height="16"/>
+                                                    <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="26J-j4-ULB"/>
+                                                        <constraint firstAttribute="width" constant="16" id="VzT-RA-uhv"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dNX-7O-XmA" customClass="ReplyImageView" customModule="Twittah" customModuleProvider="target">
+                                                    <rect key="frame" x="202" y="62" width="16" height="16"/>
+                                                    <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="J1k-ki-TOq"/>
+                                                        <constraint firstAttribute="height" constant="16" id="wGP-jA-V97"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WdZ-Jc-7S6" customClass="FaveImageView" customModule="Twittah" customModuleProvider="target">
+                                                    <rect key="frame" x="70" y="62" width="16" height="16"/>
+                                                    <gestureRecognizers/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="7sk-4G-CUG"/>
+                                                        <constraint firstAttribute="width" constant="16" id="mPH-Zt-lnd"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yw4-Nu-HEp" secondAttribute="bottom" constant="10" id="4Eo-FK-8jY"/>
+                                                <constraint firstItem="WdZ-Jc-7S6" firstAttribute="top" secondItem="yw4-Nu-HEp" secondAttribute="bottom" constant="8" id="5OZ-5Y-eO7"/>
+                                                <constraint firstItem="Zx1-fj-Y64" firstAttribute="top" secondItem="yw4-Nu-HEp" secondAttribute="bottom" constant="8" id="7oW-nR-KdZ"/>
+                                                <constraint firstItem="Zx1-fj-Y64" firstAttribute="leading" secondItem="WdZ-Jc-7S6" secondAttribute="trailing" constant="50" id="846-1y-tE1"/>
                                                 <constraint firstItem="cI5-VW-5vX" firstAttribute="top" secondItem="UTL-qr-CJa" secondAttribute="top" constant="15" id="955-le-AJh"/>
                                                 <constraint firstItem="yw4-Nu-HEp" firstAttribute="leading" secondItem="cI5-VW-5vX" secondAttribute="trailing" constant="10" id="CFa-Bb-1ex"/>
                                                 <constraint firstItem="968-NE-kQE" firstAttribute="leading" secondItem="ObK-ak-24m" secondAttribute="trailing" constant="8" id="Fbo-ah-7nz"/>
@@ -137,15 +164,22 @@
                                                 <constraint firstAttribute="trailing" secondItem="Xkn-IS-hyc" secondAttribute="trailing" constant="12" id="V5H-d8-tgY"/>
                                                 <constraint firstItem="ObK-ak-24m" firstAttribute="leading" secondItem="cI5-VW-5vX" secondAttribute="trailing" constant="10" id="cBE-Pe-nx8"/>
                                                 <constraint firstAttribute="trailing" secondItem="yw4-Nu-HEp" secondAttribute="trailing" constant="10" id="dnL-ea-Wvy"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Zx1-fj-Y64" secondAttribute="bottom" constant="10" id="h0b-RJ-JUQ"/>
                                                 <constraint firstItem="cI5-VW-5vX" firstAttribute="leading" secondItem="UTL-qr-CJa" secondAttribute="leading" constant="10" id="kba-GX-4Fg"/>
+                                                <constraint firstItem="dNX-7O-XmA" firstAttribute="leading" secondItem="Zx1-fj-Y64" secondAttribute="trailing" constant="50" id="ml2-nH-It6"/>
+                                                <constraint firstAttribute="centerX" secondItem="Zx1-fj-Y64" secondAttribute="centerX" id="qA4-S7-n8o"/>
+                                                <constraint firstItem="dNX-7O-XmA" firstAttribute="top" secondItem="yw4-Nu-HEp" secondAttribute="bottom" constant="8" id="qCt-2Y-FDq"/>
                                                 <constraint firstItem="ObK-ak-24m" firstAttribute="top" secondItem="UTL-qr-CJa" secondAttribute="top" constant="15" id="rBi-p5-jaz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="contentLabel" destination="yw4-Nu-HEp" id="Ujv-Fu-QZW"/>
+                                            <outlet property="favImage" destination="WdZ-Jc-7S6" id="HgT-Zb-LDq"/>
                                             <outlet property="handleLabel" destination="968-NE-kQE" id="02s-sS-rk6"/>
                                             <outlet property="nameLabel" destination="ObK-ak-24m" id="aol-DI-l7A"/>
                                             <outlet property="profileImage" destination="cI5-VW-5vX" id="PJu-YE-5Me"/>
+                                            <outlet property="replyImage" destination="dNX-7O-XmA" id="dHh-sA-gIP"/>
+                                            <outlet property="retweetImage" destination="Zx1-fj-Y64" id="09T-ph-zda"/>
                                             <segue destination="TsJ-xH-o25" kind="modal" id="jWd-oy-HNH"/>
                                         </connections>
                                     </tableViewCell>
