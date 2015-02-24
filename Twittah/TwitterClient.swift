@@ -23,7 +23,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     }
     
     func createFavoriteWithParams(params: NSDictionary?, completion: (response: NSDictionary?, error: NSError?) -> ()) {
-        POST("1.1/statuses/retweet/:id.json",
+        POST("1.1/favorites/create.json",
             parameters: params,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
                 completion(response: response as? NSDictionary, error: nil)
@@ -35,7 +35,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     }
     
     func retweetWithParams(params: NSDictionary?, completion: (response: NSDictionary?, error: NSError?) -> ()) {
-        POST("1.1/favorites/create.json",
+        POST("1.1/statuses/retweet/:id.json",
             parameters: params,
             success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
                 completion(response: response as? NSDictionary, error: nil)
