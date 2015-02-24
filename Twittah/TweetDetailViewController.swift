@@ -62,6 +62,25 @@ class TweetDetailViewController: UIViewController {
     @IBAction func onTimelineButtonTap(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func favButtonTapped(sender: AnyObject) {
+        var params = NSMutableDictionary()
+        params["id"] = tweet?.id
+        
+        TwitterClient.sharedInstance.createFavoriteWithParams(params, completion: { (response, error) -> () in
+            if error == nil {
+                self.faveImage.setFaved(true)
+            } else {
+                UIAlertView(
+                    title: nil,
+                    message: "Unable to mark tweet as favorite",
+                    delegate: self,
+                    cancelButtonTitle: "Well damn...")
+                    .show()
+            }
+        })
+    }
+    
 
     @IBAction func onReplyButtonTap(sender: UIBarButtonItem) {
         var params = NSMutableDictionary()

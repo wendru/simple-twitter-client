@@ -22,6 +22,18 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         return Static.instance
     }
     
+    func createFavoriteWithParams(params: NSDictionary?, completion: (response: NSDictionary?, error: NSError?) -> ()) {
+        POST("1.1/favorites/create.json",
+            parameters: params,
+            success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                completion(response: response as? NSDictionary, error: nil)
+            },
+            failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Failed to update:\n\(error)")
+                completion(response: nil, error: error)
+        })
+    }
+    
     func updateStatusWithParams(params: NSDictionary?, completion: (response: NSDictionary?, error: NSError?) -> ()) {
         POST("1.1/statuses/update.json",
             parameters: params,

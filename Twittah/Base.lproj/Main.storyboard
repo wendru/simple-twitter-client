@@ -270,10 +270,14 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3U-4Y-dEc" customClass="FaveImageView" customModule="Twittah" customModuleProvider="target">
                                         <rect key="frame" x="67" y="2" width="16" height="16"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="1XG-kU-c92"/>
                                             <constraint firstAttribute="width" constant="16" id="qUp-6V-Bs0"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="PyH-YQ-SSZ" appends="YES" id="40V-LW-9GU"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96221985479797978" green="0.96221985479797978" blue="0.96221985479797978" alpha="1" colorSpace="calibratedRGB"/>
@@ -333,6 +337,11 @@
                 <tapGestureRecognizer id="oEw-0m-MYQ">
                     <connections>
                         <action selector="replyTapped:" destination="TsJ-xH-o25" id="7Cc-SR-Vdt"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="PyH-YQ-SSZ">
+                    <connections>
+                        <action selector="favButtonTapped:" destination="TsJ-xH-o25" id="UeU-KT-i4K"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
