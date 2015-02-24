@@ -15,6 +15,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var timelineTable: UITableView!
     var HUD = JGProgressHUD(style: JGProgressHUDStyle.Dark)
+    var tweetDetailVC = TweetDetailViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineTable.delegate = self
         timelineTable.dataSource = self
         
-        setNeedsStatusBarAppearanceUpdate()
         createRefreshControl()
         
         timelineTable.rowHeight = UITableViewAutomaticDimension
@@ -69,19 +69,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
         timelineTable.insertSubview(refreshControl, atIndex: 0)
     }
-    
-    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
-    }
-    
-//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-//        return UIStatusBarStyle.LightContent
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -106,14 +93,15 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         return tweets.count
     }
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        self.tweetDetailVC = segue.destinationViewController as TweetDetailViewController
+        
+        let row = timelineTable.indexPathForSelectedRow()?.row
+        tweetDetailVC.tweet = tweets[row!]
+        super.prepareForSegue(segue, sender: sender)
     }
-    */
 
 }

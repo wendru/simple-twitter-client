@@ -21,13 +21,10 @@ class TweetCell: UITableViewCell {
         profileImage.clipsToBounds = true
         
         nameLabel.text = tweet.user?.name!
-        nameLabel.sizeToFit()
         
         let sn = tweet.user?.screenname!
         handleLabel.text = NSString(format: "@%@", sn!)
-        handleLabel.sizeToFit()
         
-        contentLabel.sizeToFit()
         contentLabel.text = tweet.text!
     }
     
@@ -35,8 +32,15 @@ class TweetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        contentLabel.preferredMaxLayoutWidth = contentLabel.frame.size.width
     }
 
+    override func layoutSubviews() {
+         super.layoutSubviews()
+        contentLabel.preferredMaxLayoutWidth = contentLabel.frame.size.width
+    }
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
