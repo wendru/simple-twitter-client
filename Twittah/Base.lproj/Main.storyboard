@@ -198,6 +198,7 @@
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Reply" id="X5Y-dj-7QC">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="onReplyButtonTap:" destination="TsJ-xH-o25" id="BT2-y8-Q79"/>
                                             </connections>
@@ -236,38 +237,104 @@
                                 <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sxF-ad-JIi">
+                                <rect key="frame" x="15" y="197" width="290" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="8Yn-22-wKM"/>
+                                </constraints>
+                                <color key="textColor" red="0.21399542299999999" green="0.21399542299999999" blue="0.21399542299999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gad-Rz-sHA">
+                                <rect key="frame" x="0.0" y="267" width="320" height="20"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LST-mI-XQS" customClass="RetweetImageView" customModule="Twittah" customModuleProvider="target">
+                                        <rect key="frame" x="152" y="2" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="Vss-7F-krp"/>
+                                            <constraint firstAttribute="width" constant="16" id="o3x-uN-8tx"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUJ-pS-iKF" customClass="ReplyImageView" customModule="Twittah" customModuleProvider="target">
+                                        <rect key="frame" x="239" y="2" width="16" height="16"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="16" id="Ud0-Bm-UN0"/>
+                                            <constraint firstAttribute="height" constant="16" id="yyP-0r-230"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="oEw-0m-MYQ" appends="YES" id="5O2-hI-abQ"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3U-4Y-dEc" customClass="FaveImageView" customModule="Twittah" customModuleProvider="target">
+                                        <rect key="frame" x="67" y="2" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="1XG-kU-c92"/>
+                                            <constraint firstAttribute="width" constant="16" id="qUp-6V-Bs0"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96221985479797978" green="0.96221985479797978" blue="0.96221985479797978" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="LST-mI-XQS" secondAttribute="centerX" id="18d-AE-2gq"/>
+                                    <constraint firstItem="F3U-4Y-dEc" firstAttribute="top" secondItem="gad-Rz-sHA" secondAttribute="top" constant="2" id="ADI-U3-3WY"/>
+                                    <constraint firstItem="pUJ-pS-iKF" firstAttribute="top" secondItem="gad-Rz-sHA" secondAttribute="top" constant="2" id="CCE-Zm-NDq"/>
+                                    <constraint firstItem="LST-mI-XQS" firstAttribute="leading" secondItem="F3U-4Y-dEc" secondAttribute="trailing" constant="70" id="JRD-cX-SIT"/>
+                                    <constraint firstItem="pUJ-pS-iKF" firstAttribute="leading" secondItem="LST-mI-XQS" secondAttribute="trailing" constant="70" id="kOS-oR-4pm"/>
+                                    <constraint firstAttribute="height" constant="20" id="tQt-xc-tRM"/>
+                                    <constraint firstItem="LST-mI-XQS" firstAttribute="top" secondItem="gad-Rz-sHA" secondAttribute="top" constant="2" id="z3k-hc-HO3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Ycn-nN-IuY" secondAttribute="trailing" constant="15" id="0nP-Fz-3mI"/>
                             <constraint firstItem="imZ-Qj-M3z" firstAttribute="leading" secondItem="5j1-7e-h9W" secondAttribute="leading" id="1vP-F2-6vk"/>
                             <constraint firstItem="mgk-bk-P7s" firstAttribute="top" secondItem="tvh-2b-IsH" secondAttribute="bottom" constant="10" id="2qX-Fq-1fD"/>
+                            <constraint firstItem="gad-Rz-sHA" firstAttribute="top" secondItem="sxF-ad-JIi" secondAttribute="bottom" id="396-LZ-du0"/>
                             <constraint firstAttribute="trailing" secondItem="imZ-Qj-M3z" secondAttribute="trailing" id="4J0-zI-6wt"/>
                             <constraint firstItem="imZ-Qj-M3z" firstAttribute="top" secondItem="QaR-Yc-Lw9" secondAttribute="bottom" id="7ek-6A-uqH"/>
                             <constraint firstItem="D8r-6t-dxH" firstAttribute="top" secondItem="imZ-Qj-M3z" secondAttribute="bottom" constant="21" id="95w-P9-q5p"/>
                             <constraint firstItem="tvh-2b-IsH" firstAttribute="leading" secondItem="5j1-7e-h9W" secondAttribute="leading" constant="15" id="9tH-mY-NIx"/>
+                            <constraint firstAttribute="trailing" secondItem="sxF-ad-JIi" secondAttribute="trailing" constant="15" id="DO6-fe-fmk"/>
                             <constraint firstItem="Ycn-nN-IuY" firstAttribute="leading" secondItem="D8r-6t-dxH" secondAttribute="trailing" constant="10" id="Hyu-u2-lIL"/>
+                            <constraint firstItem="sxF-ad-JIi" firstAttribute="leading" secondItem="5j1-7e-h9W" secondAttribute="leading" constant="15" id="JZJ-Fj-9oZ"/>
+                            <constraint firstItem="sxF-ad-JIi" firstAttribute="top" secondItem="mgk-bk-P7s" secondAttribute="bottom" constant="8" id="JwY-ua-5VW"/>
                             <constraint firstItem="PHQ-TO-G6f" firstAttribute="top" secondItem="Ycn-nN-IuY" secondAttribute="bottom" constant="5" id="P3S-G4-ryy"/>
                             <constraint firstItem="Ycn-nN-IuY" firstAttribute="top" secondItem="imZ-Qj-M3z" secondAttribute="bottom" constant="27" id="U1x-E9-sLV"/>
+                            <constraint firstAttribute="trailing" secondItem="gad-Rz-sHA" secondAttribute="trailing" id="aaN-aM-IrU"/>
                             <constraint firstAttribute="trailing" secondItem="PHQ-TO-G6f" secondAttribute="trailing" constant="15" id="d7x-oD-Ja2"/>
                             <constraint firstItem="tvh-2b-IsH" firstAttribute="top" secondItem="D8r-6t-dxH" secondAttribute="bottom" constant="10" id="dUi-o9-hqF"/>
                             <constraint firstItem="PHQ-TO-G6f" firstAttribute="leading" secondItem="D8r-6t-dxH" secondAttribute="trailing" constant="10" id="hMs-fN-vo0"/>
                             <constraint firstItem="mgk-bk-P7s" firstAttribute="leading" secondItem="5j1-7e-h9W" secondAttribute="leading" constant="15" id="jjr-UV-XP4"/>
                             <constraint firstAttribute="trailing" secondItem="tvh-2b-IsH" secondAttribute="trailing" constant="15" id="kD0-6I-YPZ"/>
                             <constraint firstAttribute="trailing" secondItem="mgk-bk-P7s" secondAttribute="trailing" constant="15" id="kkM-gQ-cFV"/>
+                            <constraint firstItem="gad-Rz-sHA" firstAttribute="leading" secondItem="5j1-7e-h9W" secondAttribute="leading" id="lK4-hb-Krd"/>
                             <constraint firstItem="D8r-6t-dxH" firstAttribute="leading" secondItem="5j1-7e-h9W" secondAttribute="leading" constant="15" id="t0g-te-keo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eU2-0G-qR2"/>
                     <connections>
                         <outlet property="contentLabel" destination="tvh-2b-IsH" id="xVW-P4-f1D"/>
+                        <outlet property="faveImage" destination="F3U-4Y-dEc" id="nEB-DX-ecC"/>
                         <outlet property="handleLabel" destination="PHQ-TO-G6f" id="jVv-gd-ZuZ"/>
                         <outlet property="nameLabel" destination="Ycn-nN-IuY" id="zx0-wV-MFS"/>
                         <outlet property="profileImage" destination="D8r-6t-dxH" id="5Wh-GL-Twe"/>
+                        <outlet property="replyButton" destination="X5Y-dj-7QC" id="0hI-Ky-HXx"/>
+                        <outlet property="replyImage" destination="pUJ-pS-iKF" id="4As-m8-EfL"/>
+                        <outlet property="retweetImage" destination="LST-mI-XQS" id="ioU-T3-Nm0"/>
+                        <outlet property="textField" destination="sxF-ad-JIi" id="AEb-vS-6jA"/>
                         <outlet property="timestampLabel" destination="mgk-bk-P7s" id="BeK-RY-JBX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Fo-ce-P9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oEw-0m-MYQ">
+                    <connections>
+                        <action selector="replyTapped:" destination="TsJ-xH-o25" id="7Cc-SR-Vdt"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="531" y="1184"/>
         </scene>

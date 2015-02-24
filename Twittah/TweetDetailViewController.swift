@@ -13,8 +13,16 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
+    
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    
+    @IBOutlet weak var textField: UITextView!
+    @IBOutlet weak var replyButton: UIBarButtonItem!
+    
+    @IBOutlet weak var faveImage: FaveImageView!
+    @IBOutlet weak var retweetImage: RetweetImageView!
+    @IBOutlet weak var replyImage: ReplyImageView!
     
     var tweet: Tweet?
 
@@ -22,7 +30,13 @@ class TweetDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        setUp()
         hydrate()
+    }
+    
+    func setUp() {
+        replyButton.tintColor = UIColor.whiteColor()
+        textField.hidden = true
     }
     
     func hydrate() {
@@ -50,9 +64,35 @@ class TweetDetailViewController: UIViewController {
     }
 
     @IBAction func onReplyButtonTap(sender: UIBarButtonItem) {
-
+        var params = NSMutableDictionary()
+        params["status"] = textField.text!
+        params["in_reply_to_status_id"] = tweet?.id
+        
+        TwitterClient.sharedInstance.updateStatusWithParams(params, completion: { (response, error) -> () in
+            if error == nil {
+                self.replyImage.setReplied(true)
+                self.replyButton.tintColor = UIColor.whiteColor()
+                self.resignFirstResponder()
+                self.textField.editable = false
+            } else {
+                UIAlertView(
+                    title: nil,
+                    message: "Unable to reply",
+                    delegate: self,
+                    cancelButtonTitle: "Well damn...")
+                .show()
+            }
+        })
     }
     
+    @IBAction func replyTapped(sender: AnyObject) {
+        replyButton.tintColor = UIColor.grayColor()
+        
+        textField.hidden = false
+        let sn = tweet?.user?.screenname!
+        textField.text = NSString(format: "@%@ ", sn!)
+        textField.becomeFirstResponder()
+    }
     /*
     // MARK: - Navigation
 
