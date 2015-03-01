@@ -12,10 +12,15 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var tweets = [Tweet]()
     var refreshControl: UIRefreshControl!
-    
-    @IBOutlet weak var timelineTable: UITableView!
     var HUD = JGProgressHUD(style: JGProgressHUDStyle.Dark)
     var tweetDetailVC = TweetDetailViewController()
+    
+    var timelineViewOriginaPosition: CGPoint?
+    var timelineViewDocked = false
+    
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var timelineView: UIView!
+    @IBOutlet weak var timelineTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +36,24 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
         createRefreshControl()
         
+        // Change status bar style
+        setNeedsStatusBarAppearanceUpdate()
+        
+        // Table auto height and edge to edge border
         timelineTable.rowHeight = UITableViewAutomaticDimension
         timelineTable.estimatedRowHeight = 50
         timelineTable.separatorInset = UIEdgeInsetsZero
         timelineTable.layoutMargins = UIEdgeInsetsZero
+        
+        // Add border
+        timelineView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        timelineView.layer.borderWidth = 1.5
+        
+        // Add some drop shawdow to the view
+        timelineView.layer.shadowColor = UIColor.blackColor().CGColor
+        timelineView.layer.shadowOpacity = 0.7
+        timelineView.layer.shadowRadius = 3.0
+        timelineView.layer.shadowOffset = CGSizeMake(2.0, 2.0)
     }
     
     func loadTimeline() {
@@ -69,15 +88,28 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
         timelineTable.insertSubview(refreshControl, atIndex: 0)
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onLogout(sender: AnyObject) {
-        User.currentUser?.logout()
+    @IBAction func onMenuTap(sender: UIBarButtonItem) {
+        if timelineViewDocked {
+            dockTimelineView(false)
+        } else {
+            timelineViewOriginaPosition = timelineView.center
+            dockTimelineView(true)
+        }
     }
+    
+//    @IBAction func onLogout(sender: AnyObject) {
+//        User.currentUser?.logout()
+//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = timelineTable.dequeueReusableCellWithIdentifier("TweetCell") as TweetCell
@@ -93,6 +125,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         return tweets.count
     }
     
+    
     func currentTweet() -> Tweet? {
         let row = timelineTable.indexPathForSelectedRow()?.row
         if row == nil {
@@ -102,16 +135,55 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    @IBAction func onTimelineViewPanned(sender: UIPanGestureRecognizer) {
+        var translation = sender.translationInView(view)
+        var velocity = sender.velocityInView(view)
+        var destination: CGFloat?
+        var dockedPositionX = CGFloat(495)
+        
+        if sender.state == .Began {
+            if !timelineViewDocked {
+                timelineViewOriginaPosition = timelineView.center
+            }
+        } else if sender.state == .Changed {
+            destination = timelineViewOriginaPosition!.x + translation.x
+            
+            if destination >= timelineViewOriginaPosition!.x && !timelineViewDocked { timelineView.center.x = destination!
+            } else if timelineViewDocked && timelineView.center.x + translation.x >= self.view.frame.width / 2 {
+                timelineView.center.x += translation.x
+            }
+        } else if sender.state == .Ended {
+            if self.view.frame.width < self.timelineView.center.x {
+                self.dockTimelineView(true)
+            } else {
+                self.dockTimelineView(false)
+            }
+        }
+    }
+
+    func dockTimelineView(toDock: Bool) {
+        self.timelineViewDocked = toDock
+        
+        UIView.animateWithDuration(0.25, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: nil, animations: { () -> Void in
+            
+            if toDock {
+                self.timelineView.center.x = CGFloat(495)
+            } else {
+                self.timelineView.center = self.timelineViewOriginaPosition!
+            }
+            
+        }, completion: nil)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if self.currentTweet() != nil {
+        if segue.identifier == "TweetDetail" {
             self.tweetDetailVC = segue.destinationViewController as TweetDetailViewController
             tweetDetailVC.tweet = currentTweet()
             super.prepareForSegue(segue, sender: sender)
         }
-        
     }
     
 }
