@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol TweetCellDelegate: class {
+    func tweetCell(tweetCell: TweetCell, profileImageTapped user: User)
+}
+
 class TweetCell: UITableViewCell {
+    
+    private var tweet: Tweet?
+    weak var delegate: TweetCellDelegate?
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,9 +28,15 @@ class TweetCell: UITableViewCell {
     
     
     func hygrateWithTweet(tweet: Tweet) {
+        self.tweet = tweet
+        
         profileImage.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!))
         profileImage.layer.cornerRadius = 4
         profileImage.clipsToBounds = true
+        profileImage.userInteractionEnabled = true
+        
+        let tapGR = UITapGestureRecognizer(target: self, action: "profileImageTapped")
+        profileImage.addGestureRecognizer(tapGR)
         
         nameLabel.text = tweet.user?.name!
         
@@ -40,6 +53,9 @@ class TweetCell: UITableViewCell {
         retweetImage.id = tweet.id
     }
     
+    func profileImageTapped() {
+        delegate?.tweetCell(self, profileImageTapped: self.tweet!.user!)
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,7 +65,7 @@ class TweetCell: UITableViewCell {
     }
 
     override func layoutSubviews() {
-         super.layoutSubviews()
+        super.layoutSubviews()
         contentLabel.preferredMaxLayoutWidth = contentLabel.frame.size.width
     }
     

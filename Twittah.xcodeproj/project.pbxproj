@@ -97,6 +97,7 @@
 		542989711A95BD1400FA282A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				54EC63FA1AA3DE6000EFAA65 /* ProfileViewController.swift */,
 				54F551091A95B74C00866ED3 /* ViewController.swift */,
 				54D64FB31A9AAFF200B92850 /* TimelineViewController.swift */,
 				54D64FB91A9B1C2800B92850 /* TweetViewController.swift */,
@@ -121,7 +122,6 @@
 				54D375771A9C61350066872A /* FaveImageView.swift */,
 				54D375791A9C6AD30066872A /* RetweetImageView.swift */,
 				54D3757B1A9C6AF50066872A /* ReplyImageView.swift */,
-				54EC63FA1AA3DE6000EFAA65 /* ProfileViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";

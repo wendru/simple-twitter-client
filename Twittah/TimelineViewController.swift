@@ -8,7 +8,9 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+var targetUser: User?
+
+class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate {
     
     private var tweets = [Tweet]()
     private var refreshControl: UIRefreshControl!
@@ -152,6 +154,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         if tableView == timelineTable {
             var cell = timelineTable.dequeueReusableCellWithIdentifier("TweetCell") as TweetCell
             cell.hygrateWithTweet(self.tweets[indexPath.row] as Tweet)
+            cell.delegate = self
             
             cell.separatorInset = UIEdgeInsetsZero
             cell.layoutMargins = UIEdgeInsetsZero
@@ -194,6 +197,11 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 User.currentUser?.logout()
             }
         }
+    }
+    
+    func tweetCell(tweetCell: TweetCell, profileImageTapped user: User) {
+        targetUser = user
+        self.performSegueWithIdentifier("viewProfile", sender: self)
     }
     
     func currentTweet() -> Tweet? {
@@ -244,6 +252,13 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             
         }, completion: nil)
     }
+    
+//    @IBAction func userImageTapped(sender: UITapGestureRecognizer) {
+//        let index = sender.view?.superview?.tag
+//        targetUser = tweets[index!].user
+//        
+//        self.performSegueWithIdentifier("viewProfile", sender: self)
+//    }
     
     // MARK: - Navigation
 

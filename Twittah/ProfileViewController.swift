@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tweetCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followerCountLabel: UILabel!
+    
+    var user: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,17 +44,24 @@ class ProfileViewController: UIViewController {
     }
 
     func setUp() {
-        var user = User.currentUser!
+        var user: User?
         
-        profileImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
+        if targetUser == nil {
+            user = User.currentUser
+        } else {
+            user = targetUser
+        }
+        
+        profileImage.setImageWithURL(NSURL(string: user!.profileImageUrl!))
         profileImage.layer.cornerRadius = 4
         profileImage.clipsToBounds = true
         profileImage.layer.borderColor = UIColor.whiteColor().CGColor
         profileImage.layer.borderWidth = 2;
         
-        nameLabel.text = user.name
-        handleLabel.text = String(format: "@%@", user.screenname!)
-        backgroundImage.setImageWithURL(NSURL(string: user.profileBackgroundImageUrl!))
+        nameLabel.text = user!.name
+        handleLabel.text = String(format: "@%@", user!.screenname!)
+        backgroundImage.setImageWithURL(NSURL(string: user!.profileBackgroundImageUrl!))
+        backgroundImage.clipsToBounds = true
         
 //        tweetsView.layer.borderColor = UIColor.lightGrayColor().CGColor
 //        tweetsView.layer.borderWidth = 1
@@ -61,9 +70,9 @@ class ProfileViewController: UIViewController {
 //        followersView.layer.borderColor = UIColor.lightGrayColor().CGColor
 //        followersView.layer.borderWidth = 1
         
-        tweetCountLabel.text = String(format: "%d", user.tweetsCount!)
-        followerCountLabel.text = String(format: "%d", user.followersCount!)
-        followingCountLabel.text = String(format: "%d", user.followingsCount!)
+        tweetCountLabel.text = String(format: "%d", user!.tweetsCount!)
+        followerCountLabel.text = String(format: "%d", user!.followersCount!)
+        followingCountLabel.text = String(format: "%d", user!.followingsCount!)
     }
     
     
