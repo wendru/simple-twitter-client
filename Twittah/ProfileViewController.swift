@@ -66,6 +66,10 @@ class ProfileViewController: UIViewController {
         followingCountLabel.text = String(format: "%d", user.followingsCount!)
     }
     
+    
+    @IBAction func onBack(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

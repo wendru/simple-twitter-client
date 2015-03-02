@@ -19,6 +19,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     private var timelineViewDocked = false
     
     // For timeline view
+    @IBOutlet weak var feedTitle: UINavigationItem!
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var timelineView: UIView!
     @IBOutlet weak var timelineTable: UITableView!
@@ -67,6 +68,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadTimeline() {
+        feedTitle.title = "Home Timeline"
         HUD.showInView(self.view)
         
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
@@ -86,6 +88,31 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
         HUD.dismissAfterDelay(0.5, animated: true)
         refreshControl.endRefreshing()
+    }
+    
+    func loadMentions() {
+        feedTitle.title = "Mentions"
+        HUD.showInView(self.view)
+        
+        TwitterClient.sharedInstance.mentionsTimelineWithParams(nil, completion: { (tweets, error) -> () in
+            if tweets != nil {
+                self.tweets = tweets!
+                self.timelineTable.reloadData()
+            } else {
+                UIAlertView(
+                    title: nil,
+                    message: "Unable to fetch your mentions",
+                    delegate: self,
+                    cancelButtonTitle: "Well damn...")
+                    .show()
+            }
+            
+        })
+        
+        HUD.dismissAfterDelay(0.5, animated: true)
+        refreshControl.endRefreshing()
+
+        timelineTable.reloadData()
     }
     
     func createRefreshControl() {
@@ -150,6 +177,22 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             return menuItems.count
         } else {
             return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == menuTable {
+            let item = menuItems[indexPath.row]
+            
+            if item == "HomeMenuItemCell" {
+                self.dockTimelineView(false)
+                self.loadTimeline()
+            } else if item == "MentionsMenuItemCell" {
+                self.dockTimelineView(false)
+                self.loadMentions()
+            } else if item == "LogoutMenuItemCell" {
+                User.currentUser?.logout()
+            }
         }
     }
     
