@@ -10,17 +10,23 @@ import UIKit
 
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var tweets = [Tweet]()
-    var refreshControl: UIRefreshControl!
-    var HUD = JGProgressHUD(style: JGProgressHUDStyle.Dark)
-    var tweetDetailVC = TweetDetailViewController()
+    private var tweets = [Tweet]()
+    private var refreshControl: UIRefreshControl!
+    private var HUD = JGProgressHUD(style: JGProgressHUDStyle.Dark)
+    private var tweetDetailVC = TweetDetailViewController()
     
-    var timelineViewOriginaPosition: CGPoint?
-    var timelineViewDocked = false
+    private var timelineViewOriginaPosition: CGPoint?
+    private var timelineViewDocked = false
     
+    // For timeline view
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var timelineView: UIView!
     @IBOutlet weak var timelineTable: UITableView!
+    
+    // For menu view
+    private var menuItems = ["ProfileMenuItemCell", "HomeMenuItemCell", "MentionsMenuItemCell", "LogoutMenuItemCell"]
+    @IBOutlet weak var menuTable: UITableView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +39,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func setUp() {
         timelineTable.delegate = self
         timelineTable.dataSource = self
+        menuTable.delegate = self
+        menuTable.dataSource = self
         
         createRefreshControl()
         
@@ -44,14 +52,16 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineTable.estimatedRowHeight = 50
         timelineTable.separatorInset = UIEdgeInsetsZero
         timelineTable.layoutMargins = UIEdgeInsetsZero
+        menuTable.separatorInset = UIEdgeInsetsZero
+        menuTable.layoutMargins = UIEdgeInsetsZero
         
         // Add border
-        timelineView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        timelineView.layer.borderWidth = 1.5
+//        timelineView.layer.borderColor = UIColor.lightGrayColor().CGColor
+//        timelineView.layer.borderWidth = 1.5
         
         // Add some drop shawdow to the view
         timelineView.layer.shadowColor = UIColor.blackColor().CGColor
-        timelineView.layer.shadowOpacity = 0.7
+        timelineView.layer.shadowOpacity = 0.8
         timelineView.layer.shadowRadius = 3.0
         timelineView.layer.shadowOffset = CGSizeMake(2.0, 2.0)
     }
@@ -112,19 +122,36 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
 //    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = timelineTable.dequeueReusableCellWithIdentifier("TweetCell") as TweetCell
-        cell.hygrateWithTweet(self.tweets[indexPath.row] as Tweet)
-        
-        cell.separatorInset = UIEdgeInsetsZero
-        cell.layoutMargins = UIEdgeInsetsZero
-        
-        return cell
+        if tableView == timelineTable {
+            var cell = timelineTable.dequeueReusableCellWithIdentifier("TweetCell") as TweetCell
+            cell.hygrateWithTweet(self.tweets[indexPath.row] as Tweet)
+            
+            cell.separatorInset = UIEdgeInsetsZero
+            cell.layoutMargins = UIEdgeInsetsZero
+            
+            return cell
+        } else if tableView == menuTable {
+            let identifier = self.menuItems[indexPath.row] as String
+            var cell = menuTable.dequeueReusableCellWithIdentifier(identifier) as UITableViewCell
+            
+            cell.separatorInset = UIEdgeInsetsZero
+            cell.layoutMargins = UIEdgeInsetsZero
+            
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweets.count
+        if tableView == timelineTable {
+            return tweets.count
+        } else if tableView == menuTable {
+            return menuItems.count
+        } else {
+            return 0
+        }
     }
-    
     
     func currentTweet() -> Tweet? {
         let row = timelineTable.indexPathForSelectedRow()?.row

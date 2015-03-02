@@ -22,6 +22,7 @@
 		54D64FB41A9AAFF200B92850 /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D64FB31A9AAFF200B92850 /* TimelineViewController.swift */; };
 		54D64FB61A9AF34300B92850 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D64FB51A9AF34300B92850 /* TweetCell.swift */; };
 		54D64FBA1A9B1C2800B92850 /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D64FB91A9B1C2800B92850 /* TweetViewController.swift */; };
+		54EC63FB1AA3DE6000EFAA65 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54EC63FA1AA3DE6000EFAA65 /* ProfileViewController.swift */; };
 		54F551081A95B74C00866ED3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F551071A95B74C00866ED3 /* AppDelegate.swift */; };
 		54F5510A1A95B74C00866ED3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F551091A95B74C00866ED3 /* ViewController.swift */; };
 		54F5510D1A95B74C00866ED3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F5510B1A95B74C00866ED3 /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		54D64FB31A9AAFF200B92850 /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		54D64FB51A9AF34300B92850 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		54D64FB91A9B1C2800B92850 /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
+		54EC63FA1AA3DE6000EFAA65 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		54F551021A95B74C00866ED3 /* Twittah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twittah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54F551061A95B74C00866ED3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54F551071A95B74C00866ED3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				54D375771A9C61350066872A /* FaveImageView.swift */,
 				54D375791A9C6AD30066872A /* RetweetImageView.swift */,
 				54D3757B1A9C6AF50066872A /* ReplyImageView.swift */,
+				54EC63FA1AA3DE6000EFAA65 /* ProfileViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				54D64FBA1A9B1C2800B92850 /* TweetViewController.swift in Sources */,
 				5429897B1A95BECF00FA282A /* TwitterClient.swift in Sources */,
 				54D3757A1A9C6AD30066872A /* RetweetImageView.swift in Sources */,
+				54EC63FB1AA3DE6000EFAA65 /* ProfileViewController.swift in Sources */,
 				54F551081A95B74C00866ED3 /* AppDelegate.swift in Sources */,
 				54D64FB41A9AAFF200B92850 /* TimelineViewController.swift in Sources */,
 			);
