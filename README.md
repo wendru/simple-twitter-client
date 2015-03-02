@@ -41,7 +41,7 @@ Time spent: Week 3 - `~ 20 hrs`, Week 4 - `~20 hrs`
 - [ ] Optional: Implement the paging view for the user description.
 - [ ] Optional: As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
 - [ ] Optional: Pulling down the profile page should blur and resize the header image.
-- 
+
 ##### Home Timeline
 - [x] Tapping on a user image should bring up that user's profile page
 
